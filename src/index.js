@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './main.scss';
 
 const App = () => (
-    <h1>Kyppy made it - Shit is real</h1>
+    <h1>Kyppy made it</h1>
 )
 
 ReactDOM.render(
