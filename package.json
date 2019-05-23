@@ -20,7 +20,6 @@
   "homepage": "https://github.com/Kyppy/bit-trophy-frontend#readme",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
     "css-loader": "^2.1.1",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
@@ -28,6 +27,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
