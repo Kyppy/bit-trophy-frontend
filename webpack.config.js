@@ -50,6 +50,6 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebPackPlugin()],
   mode: 'development'
 };
