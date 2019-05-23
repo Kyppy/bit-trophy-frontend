@@ -1,9 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import './themes/custom.scss';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './main.scss';
 
-const Index = () => {
-  return <div>Hello React!</div>;
-};
+const App = () => (
+    <h1>Kyppy made it - Shit is real</h1>
+)
 
-ReactDOM.render(<Index />, document.getElementById("index"));
+ReactDOM.render(
+    <App/>,
+    document.getElementById('root')
+)

@@ -1,55 +1,39 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
 
-// const htmlWebpackPlugin = new HtmlWebPackPlugin({
-//   template: "./src/index.html"
-// });
 
 module.exports = {
-  entry: './src/index.js',
+  entry: path.resolve(__dirname + '/src/index.js'),
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'main.js'
+    filename: 'bundle.js',
+    path: path.resolve(__dirname + '/dist')
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: 'babel-loader'
       },
       {
-        test: /\.(scss)$/,
+        test: /\.(sc|c)ss$/,
         use: [
-          {
-            // Adds CSS to the DOM by injecting a `<style>` tag
-            loader: 'style-loader'
-          },
-          {
-            // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: 'css-loader'
-          },
-          {
-            // Loader for webpack to process CSS with PostCSS
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ];
-              }
-            }
-          },
-          {
-            // Loads a SASS/SCSS file and compiles it to CSS
-            loader: 'sass-loader'
-          }
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
         ]
       }
     ]
   },
-  plugins: [new HtmlWebPackPlugin()],
+  devServer: {
+    contentBase: './dist',
+    port: 3000,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Kyppyt Real',
+      filename: 'index.html',
+      template: path.resolve(__dirname + '/src/index.template.html')
+    })
+  ],
   mode: 'development'
-};
+}
