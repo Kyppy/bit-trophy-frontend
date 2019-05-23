@@ -33,6 +33,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'Bit Trophy',
       filename: 'index.html',
       template: './src/index.template.html',
     })
