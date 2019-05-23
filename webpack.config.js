@@ -3,10 +3,12 @@ const path = require('path')
 
 
 module.exports = {
-  entry: path.resolve(__dirname + '/src/index.js'),
+  entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname + '/dist')
+    path: path.resolve(__dirname + '/dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -26,14 +28,13 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
     port: 3000,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Kyppyt Real',
       filename: 'index.html',
-      template: path.resolve(__dirname + '/src/index.template.html')
+      template: './src/index.template.html',
     })
   ],
-  mode: 'development'
-}
+};
