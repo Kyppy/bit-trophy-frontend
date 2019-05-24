@@ -1,49 +1,41 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
 
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
-  template: "./src/index.html",
-  filename: "./index.html"
-});
 
 module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname + '/dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: {loader: 'babel-loader'}
       },
       {
-        test: /\.(scss)$/,
+        test: /\.(sc|c)ss$/,
         use: [
-          {
-            // Adds CSS to the DOM by injecting a `<style>` tag
-            loader: 'style-loader'
-          },
-          {
-            // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: 'css-loader'
-          },
-          {
-            // Loader for webpack to process CSS with PostCSS
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ];
-              }
-            }
-          },
-          {
-            // Loads a SASS/SCSS file and compiles it to CSS
-            loader: 'sass-loader'
-          }
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
         ]
       }
     ]
   },
-  plugins: [htmlWebpackPlugin]
+  devServer: {
+    contentBase: './dist',
+    historyApiFallback: true,
+    port: 3000,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Bit Trophy',
+      filename: 'index.html',
+      template: './src/index.template.html',
+    })
+  ],
 };
