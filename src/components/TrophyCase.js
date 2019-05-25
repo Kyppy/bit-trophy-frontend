@@ -15,7 +15,7 @@ class TrophyCase extends Component {
           <td>{item.title}</td>
           <td>{item.platform}</td>
           <td>{item.genre}</td>
-          <td>{item.is_playing}</td>
+          <td>{item.is_playing ? ('Yes') : ('No')}</td>
           <td>{item.user_rating}</td>
         </tr>
       ))

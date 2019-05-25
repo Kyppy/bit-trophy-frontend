@@ -12,7 +12,6 @@ export const fetchGames = () => {
   return axios.get(`${Url.root}games/`)
     .then((response) => {
       // handle success
-      console.log(response);
       return response.data.games;
     });
 };
