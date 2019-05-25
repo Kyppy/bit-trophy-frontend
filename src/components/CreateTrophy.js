@@ -1,14 +1,39 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+// const configUrls = {
+//   root: 'https://ah-the-answer-backend-staging.herokuapp.com/api/articles/',
+// };
+
+const Url = {
+  root: 'http://127.0.0.1:8000/api/v1/',
+};
 
 class CreateTrophy extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: 'default', platform: 'PS4', genre:'Adventure', playCheck: false, rating:1 };
-    //this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.state = { title: 'Defaulted Title', platform: 'PS4', genre: 'Adventure', playCheck: false, rating:1 };
   }
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { title } = this.state;
+    const { platform } = this.state;
+    const { genre } = this.state;
+    const { rating } = this.state;
+    const { playCheck } = this.state;
+    axios.post(`${Url.root}games/`, {
+      game: {
+        title, platform, genre, user_rating: rating, is_playing: playCheck, user_id: 1,
+      },
+    }).then((response) => {
+      // handle success
+      console.log(response.data);
+    });
     console.log(this.state);
   };
 
@@ -73,7 +98,7 @@ class CreateTrophy extends Component {
               </div>
             </div>
             <div className="col-sm-2 mb-2">
-              <button class="btn btn-primary" type="submit">Create Trophy!</button>
+              <button class="btn btn-primary" type="submit" onClick={this.handleSubmit}>Create Trophy!</button>
             </div>
           </div>
         </form>
