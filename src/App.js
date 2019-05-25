@@ -3,10 +3,6 @@ import Navbar from './components/Navbar';
 import TrophyCase from './components/TrophyCase';
 import { fetchGames } from './componentFunctions/trophyCaseFunctions';
 
-const Url = {
-  root: 'http://127.0.0.1:8000/api/v1/',
-};
-
 class App extends Component {
   constructor(props) {
     super(props);
