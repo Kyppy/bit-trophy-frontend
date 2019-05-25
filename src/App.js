@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import TrophyCase from './components/TrophyCase';
+import CreateTrophy from './components/CreateTrophy';
 import { fetchGames } from './componentFunctions/trophyCaseFunctions';
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
+        <CreateTrophy />
         <table className="table">
           <thead>
             <tr>
