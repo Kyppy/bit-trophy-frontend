@@ -11,6 +11,7 @@ function Navbar(props) {
         <div className="navbar-nav">
           <a className="nav-item nav-link active" href="#">My Trophy Case<span className="sr-only">(current)</span></a>
           <a className="nav-item nav-link" href="#">Trophy Hall</a>
+          <a className="nav-item nav-link" href="#">Profile</a>
           <a className="nav-item nav-link" href="#">Sign Out</a>
         </div>
       </div>
