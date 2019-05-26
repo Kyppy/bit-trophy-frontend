@@ -13,7 +13,14 @@ class CreateTrophy extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Defaulted Title', platform: 'PS4', genre: 'Adventure', playCheck: false, rating: 1, canPost: true,
+      title: 'Defaulted Title',
+      platform: 'PS4',
+      genre: 'Adventure',
+      playCheck: false,
+      rating: 1,
+      canPost: true,
+      gameID: 0,
+      showEdit: false,
     };
   }
 
@@ -58,10 +65,41 @@ class CreateTrophy extends Component {
     }
   };
 
+  editReady = () => {
+    const { gameID } = this.state;
+    axios.get(`${Url.root}game/${gameID}/`).then((response) => {
+      // handle success
+      const gameData = response.data.game[0];
+      this.setState({
+        title: gameData.title,
+        platform: gameData.platform,
+        genre: gameData.genre,
+        playCheck: gameData.is_playing,
+        rating: gameData.user_rating,
+      });
+      this.setState({ showEdit: true });
+      console.log(this.state);
+    });
+  }
+
   render() {
     const { title } = this.state;
+    const { showEdit } = this.state;
     return (
-      <div className="createTrophy">
+      <div className="editTrophy">
+        <div className="row">
+          <div className="col-sm-2">
+            <button className="btn btn-primary" type="submit" onClick={this.editReady}>Edit A Trophy?</button>
+          </div>
+          <div className="col-sm-2">
+            <select className="custom-select custom-select-sm" name="gameID" onChange={this.handleChange}>
+              <option selected>--Select Trophy To Edit--</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+            </select>
+          </div>
+        </div>
         <form>
           <div className="form-row">
             <div className="col-sm-2 mb-1 mr-3">
@@ -120,7 +158,7 @@ class CreateTrophy extends Component {
               </div>
             </div>
             <div className="col-sm-2 mb-2">
-              <button class="btn btn-primary" type="submit" onClick={this.handleSubmit}>Edit Your Trophy</button>
+              <button className="btn btn-primary" type="submit" onClick={this.handleSubmit}>Edit Your Trophy</button>
             </div>
           </div>
         </form>
