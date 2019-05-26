@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import TrophyCase from './components/TrophyCase';
 import CreateTrophy from './components/CreateTrophy';
+import EditTrophy from './components/EditTrophy';
 import { fetchGames } from './componentFunctions/trophyCaseFunctions';
 
+let updateFlag = true;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,9 +20,13 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    fetchGames().then((data) => {
-      this.setState({ games: data });
-    });
+    const { toggleRerender } = this.state;
+    if (updateFlag === toggleRerender) {
+      fetchGames().then((data) => {
+        this.setState({ games: data });
+        updateFlag = !toggleRerender;
+      });
+    }
   }
 
   rerenderParent() {
@@ -28,12 +34,11 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.games);
     const { games } = this.state;
     return (
       <div className="App">
         <Navbar />
-        <CreateTrophy rerender={this.rerenderParent} />
+        <CreateTrophy rerenderParent={this.rerenderParent} />
         <table className="table">
           <thead>
             <tr>
@@ -48,6 +53,7 @@ class App extends Component {
             <TrophyCase games={games} />
           </tbody>
         </table>
+        <EditTrophy rerenderParent={this.rerenderParent} />
       </div>
     );
   }
