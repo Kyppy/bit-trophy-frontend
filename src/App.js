@@ -7,23 +7,33 @@ import { fetchGames } from './componentFunctions/trophyCaseFunctions';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { games: [], change: '' };
+    this.state = { games: [], toggleRerender: false };
+    this.rerenderParent = this.rerenderParent.bind(this);
   }
-
 
   componentDidMount() {
     fetchGames().then((data) => {
-      console.log(data);
       this.setState({ games: data });
     });
   }
 
+  componentDidUpdate() {
+    fetchGames().then((data) => {
+      this.setState({ games: data });
+    });
+  }
+
+  rerenderParent() {
+    this.setState({ toggleRerender: !this.state.toggleRerender });
+  }
+
   render() {
+    console.log(this.state.games);
     const { games } = this.state;
     return (
       <div className="App">
         <Navbar />
-        <CreateTrophy />
+        <CreateTrophy rerender={this.rerenderParent} />
         <table className="table">
           <thead>
             <tr>

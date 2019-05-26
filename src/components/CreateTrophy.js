@@ -12,7 +12,9 @@ const Url = {
 class CreateTrophy extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: 'Defaulted Title', platform: 'PS4', genre: 'Adventure', playCheck: false, rating:1 };
+    this.state = {
+      title: 'Defaulted Title', platform: 'PS4', genre: 'Adventure', playCheck: false, rating: 1, canPost: true,
+    };
   }
 
   handleChange = (event) => {
@@ -21,20 +23,26 @@ class CreateTrophy extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.setState({ canPost: false });
     const { title } = this.state;
     const { platform } = this.state;
     const { genre } = this.state;
     const { rating } = this.state;
     const { playCheck } = this.state;
-    axios.post(`${Url.root}games/`, {
-      game: {
-        title, platform, genre, user_rating: rating, is_playing: playCheck, user_id: 1,
-      },
-    }).then((response) => {
-      // handle success
-      console.log(response.data);
-    });
-    console.log(this.state);
+    const { canPost } = this.state;
+    if (canPost) {
+      axios.post(`${Url.root}games/`, {
+        game: {
+          title, platform, genre, user_rating: rating, is_playing: playCheck, user_id: 1,
+        },
+      }).then((response) => {
+        // handle success
+        console.log(response.data);
+        this.setState({ canPost: true });
+        this.props.rerenderParent();
+      });
+      //console.log(this.state);
+    }
   };
 
   render() {
@@ -52,7 +60,7 @@ class CreateTrophy extends Component {
                 <select className="form-control" onChange={this.handleChange} id="selectPlatform" name="platform">
                   <option selected>PS4</option>
                   <option>PC</option>
-                  <option>XBox One</option>
+                  <option>Xbox One</option>
                   <option>Nintendo Switch</option>
                 </select>
               </div>
