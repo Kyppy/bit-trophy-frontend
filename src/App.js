@@ -42,6 +42,7 @@ class App extends Component {
         <table className="table">
           <thead>
             <tr>
+              <th scope="col">Trophy ID</th>
               <th scope="col">Title</th>
               <th scope="col">Platform</th>
               <th scope="col">Genre</th>
@@ -53,7 +54,7 @@ class App extends Component {
             <TrophyCase games={games} />
           </tbody>
         </table>
-        <EditTrophy rerenderParent={this.rerenderParent} />
+        <EditTrophy rerenderParent={this.rerenderParent} games={games} />
       </div>
     );
   }
