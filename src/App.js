@@ -40,23 +40,37 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <CreateTrophy rerenderParent={this.rerenderParent} />
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Trophy ID</th>
-              <th scope="col">Title</th>
-              <th scope="col">Platform</th>
-              <th scope="col">Genre</th>
-              <th scope="col">Still Playing</th>
-              <th scope="col">Rating</th>
-            </tr>
-          </thead>
-          <tbody>
-            <TrophyCase games={games} />
-          </tbody>
-        </table>
-        <EditTrophy rerenderParent={this.rerenderParent} games={games} />
-        <DeleteTrophy rerenderParent={this.rerenderParent} games={games} />
+        <div className="row">
+          <div className="col-sm-1" />
+          <div className="col-sm-10">
+            <div className="table-responsive">
+              <table className="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Trophy ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Platform</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Still Playing</th>
+                    <th scope="col">Rating</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <TrophyCase games={games} />
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="col-sm-1" />
+        </div>
+        <div className="d-flex justify-content-center">
+          <div className="col-sm-8">
+            <EditTrophy rerenderParent={this.rerenderParent} games={games} />
+          </div>
+          <div className="col-sm-4">
+            <DeleteTrophy rerenderParent={this.rerenderParent} games={games} />
+          </div>
+        </div>
       </div>
     );
   }

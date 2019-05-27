@@ -41,7 +41,6 @@ class CreateTrophy extends Component {
         this.setState({ canPost: true });
         this.props.rerenderParent();
       });
-      //console.log(this.state);
     }
   };
 
@@ -50,7 +49,7 @@ class CreateTrophy extends Component {
       <div className="createTrophy">
         <form>
           <div className="form-row">
-            <div className="col-sm-2 mb-1 mr-3">
+            <div className="col-sm-2 mb-1 mr-3 ml-3">
               <label htmlFor="titleInput">Title</label>
               <input type="text" className="form-control" id="titleInput" name="title" onChange={this.handleChange} placeholder="Enter game title..." required />
             </div>
@@ -58,7 +57,8 @@ class CreateTrophy extends Component {
               <div className="form-group">
                 <label htmlFor="selectPlatform">Platform</label>
                 <select className="form-control" onChange={this.handleChange} id="selectPlatform" name="platform">
-                  <option selected>PS4</option>
+                  <option value={null} selected>--Select Platform--</option>
+                  <option>PS4</option>
                   <option>PC</option>
                   <option>Xbox One</option>
                   <option>Nintendo Switch</option>
@@ -67,9 +67,10 @@ class CreateTrophy extends Component {
             </div>
             <div className="col-sm-2 mb-1 mr-3">
               <div className="form-group">
-                <label htmlFor="exampleFormControlSelect1">Genre</label>
+                <label htmlFor="selectGenre">Genre</label>
                 <select className="form-control" id="selectGenre" onChange={this.handleChange} name="genre">
-                  <option selected>First-person shooter</option>
+                  <option value={null} selected>--Select Genre--</option>
+                  <option>First-person shooter</option>
                   <option>Fighting</option>
                   <option>Adventure</option>
                   <option>Sports</option>
@@ -80,18 +81,20 @@ class CreateTrophy extends Component {
             </div>
             <div className="col-sm-2 mb-1 mr-3">
               <div className="form-group">
-                <label htmlFor="exampleFormControlSelect1">Still Playing?</label>
-                <select className="form-control" id="isPlaying" onChange={this.handleChange} name="playCheck" defaultValue={false}>
-                  <option  selected value={false}>Nope.</option>
+                <label htmlFor="isPlaying">Still Playing?</label>
+                <select className="form-control" id="isPlaying" onChange={this.handleChange} name="playCheck">
+                  <option value={null} selected>--Select Choice--</option>
+                  <option value={false}>Nope.</option>
                   <option value>Yup!</option>
                 </select>
               </div>
             </div>
             <div className="col-sm-2 mb-1 mr-3">
               <div className="form-group">
-                <label htmlFor="exampleFormControlSelect1">Give Your Rating.</label>
+                <label htmlFor="rateGame">Give Your Rating</label>
                 <select className="form-control" id="rateGame" onChange={this.handleChange} name="rating">
-                  <option selected>0</option>
+                  <option value={null} selected>--Select Rating--</option>
+                  <option>0</option>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -105,11 +108,11 @@ class CreateTrophy extends Component {
                 </select>
               </div>
             </div>
-            <div className="col-sm-2 mb-2">
-              <button class="btn btn-primary" type="submit" onClick={this.handleSubmit}>Create Trophy!</button>
-            </div>
           </div>
         </form>
+        <div className="mb-3 ml-3">
+          <button className="btn btn-primary" type="submit" onClick={this.handleSubmit}>Create Trophy!</button>
+        </div>
       </div>
     );
   }

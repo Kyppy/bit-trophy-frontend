@@ -46,6 +46,7 @@ class EditTrophy extends Component {
       }).then((response) => {
         // handle success
         this.setState({ canPost: true });
+        this.setState({ hideEdit: true });
         this.props.rerenderParent();
       });
     }
@@ -75,10 +76,10 @@ class EditTrophy extends Component {
     return hideEdit ? (
       <div className="editTrophy">
         <div className="row">
-          <div className="col-sm-2">
+          <div className="col-sm-3 ml-3">
             <button className="btn btn-primary" type="submit" onClick={this.editReady}>Edit A Trophy?</button>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-4">
             <select className="custom-select custom-select-sm" name="gameID" onChange={this.handleChange}>
               <option value={null} selected>Select A Trophy ID To Edit It</option>
               {games.map(item => (
@@ -92,7 +93,7 @@ class EditTrophy extends Component {
       <div className="editTrophy">
         <form>
           <div className="form-row">
-            <div className="col-sm-2 mb-1 mr-3">
+            <div className="col-sm-2 mb-1 mr-3 ml-3">
               <label htmlFor="titleInput">Title</label>
               <input type="text" className="form-control" id="titleInput" name="title" defaultValue={title} onChange={this.handleChange} placeholder="Enter game title..." required />
             </div>
@@ -100,7 +101,7 @@ class EditTrophy extends Component {
               <div className="form-group">
                 <label htmlFor="selectPlatform">Platform</label>
                 <select className="form-control" onChange={this.handleChange} id="selectPlatform" name="platform">
-                  <option value={null} selected>--Change Platform--</option>
+                  <option value={null} selected>Change Platform</option>
                   <option>PS4</option>
                   <option>PC</option>
                   <option>Xbox One</option>
@@ -112,7 +113,7 @@ class EditTrophy extends Component {
               <div className="form-group">
                 <label htmlFor="exampleFormControlSelect1">Genre</label>
                 <select className="form-control" id="selectGenre" onChange={this.handleChange} name="genre">
-                  <option value={null} selected>--Change Genre--</option>
+                  <option value={null} selected>Change Genre</option>
                   <option>First-person shooter</option>
                   <option>Fighting</option>
                   <option>Adventure</option>
@@ -126,7 +127,7 @@ class EditTrophy extends Component {
               <div className="form-group">
                 <label htmlFor="exampleFormControlSelect1">Still Playing?</label>
                 <select className="form-control" id="isPlaying" onChange={this.handleChange} name="playCheck">
-                  <option value={null} selected>--Select Choice--</option>
+                  <option value={null} selected>Select Choice</option>
                   <option value={false}>Nope.</option>
                   <option value>Yup!</option>
                 </select>
@@ -136,7 +137,7 @@ class EditTrophy extends Component {
               <div className="form-group">
                 <label htmlFor="exampleFormControlSelect1">Rating</label>
                 <select className="form-control" id="rateGame" onChange={this.handleChange} name="rating">
-                  <option value={null} selected>--Change Rating--</option>
+                  <option value={null} selected>Change Rating</option>
                   <option>0</option>
                   <option>1</option>
                   <option>2</option>
@@ -151,7 +152,7 @@ class EditTrophy extends Component {
                 </select>
               </div>
             </div>
-            <div className="col-sm-2 mb-2">
+            <div className="col-sm-2 mb-2 ml-3">
               <button className="btn btn-primary" type="submit" onClick={this.handleSubmit}>Submit Changes</button>
             </div>
           </div>

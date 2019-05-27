@@ -40,7 +40,7 @@ class DeleteTrophy extends Component {
     return (
       <div className="editTrophy">
         <div className="row">
-          <div className="col-sm-2">
+          <div className="col-sm-4">
             <button className="btn btn-danger" type="submit" onClick={this.deleteTrophy}>Delete Trophy?</button>
           </div>
           <div className="col-sm-6">
