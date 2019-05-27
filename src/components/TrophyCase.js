@@ -11,6 +11,7 @@ class TrophyCase extends Component {
     return games ? (
       games.map(item => (
         <tr key={item.id}>
+          <th scope="row">{item.id}</th>
           <td>{item.title}</td>
           <td>{item.platform}</td>
           <td>{item.genre}</td>
