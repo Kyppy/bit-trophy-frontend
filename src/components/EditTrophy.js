@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// const configUrls = {
-//   root: 'https://ah-the-answer-backend-staging.herokuapp.com/api/articles/',
-// };
-
 const Url = {
-  root: 'http://127.0.0.1:8000/api/v1/',
+  root: 'https://bit-trophy.herokuapp.com/api/v1/',
 };
+
+// const Url = {
+//   root: 'http://127.0.0.1:8000/api/v1/',
+// };
 
 class EditTrophy extends Component {
   constructor(props) {
