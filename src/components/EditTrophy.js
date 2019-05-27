@@ -9,7 +9,7 @@ const Url = {
   root: 'http://127.0.0.1:8000/api/v1/',
 };
 
-class CreateTrophy extends Component {
+class EditTrophy extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,6 +71,7 @@ class CreateTrophy extends Component {
   render() {
     const { title } = this.state;
     const { hideEdit } = this.state;
+    const { games } = this.props;
     return hideEdit ? (
       <div className="editTrophy">
         <div className="row">
@@ -79,10 +80,10 @@ class CreateTrophy extends Component {
           </div>
           <div className="col-sm-6">
             <select className="custom-select custom-select-sm" name="gameID" onChange={this.handleChange}>
-              <option selected>Select Trophy To Edit</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
+              <option selected>Select A Trophy ID To Edit</option>
+              {games.map(item => (
+                <option key={item.id}>{item.id}</option>
+              ))}
             </select>
           </div>
         </div>
@@ -99,7 +100,7 @@ class CreateTrophy extends Component {
               <div className="form-group">
                 <label htmlFor="selectPlatform">Platform</label>
                 <select className="form-control" onChange={this.handleChange} id="selectPlatform" name="platform">
-                  <option value={null} selected>--Change Platform-</option>
+                  <option value={null} selected>--Change Platform--</option>
                   <option>PS4</option>
                   <option>PC</option>
                   <option>Xbox One</option>
@@ -111,7 +112,7 @@ class CreateTrophy extends Component {
               <div className="form-group">
                 <label htmlFor="exampleFormControlSelect1">Genre</label>
                 <select className="form-control" id="selectGenre" onChange={this.handleChange} name="genre">
-                  <option value={null} selected>--Change Genre-</option>
+                  <option value={null} selected>--Change Genre--</option>
                   <option>First-person shooter</option>
                   <option>Fighting</option>
                   <option>Adventure</option>
@@ -124,17 +125,18 @@ class CreateTrophy extends Component {
             <div className="col-sm-2 mb-1 mr-3">
               <div className="form-group">
                 <label htmlFor="exampleFormControlSelect1">Still Playing?</label>
-                <select className="form-control" id="isPlaying" onChange={this.handleChange} name="playCheck" defaultValue={false}>
-                  <option selected value={false}>Nope.</option>
+                <select className="form-control" id="isPlaying" onChange={this.handleChange} name="playCheck">
+                  <option value={null} selected>--Select Choice--</option>
+                  <option value={false}>Nope.</option>
                   <option value>Yup!</option>
                 </select>
               </div>
             </div>
             <div className="col-sm-2 mb-1 mr-3">
               <div className="form-group">
-                <label htmlFor="exampleFormControlSelect1">Rating.</label>
+                <label htmlFor="exampleFormControlSelect1">Rating</label>
                 <select className="form-control" id="rateGame" onChange={this.handleChange} name="rating">
-                  <option value={null} selected>--Change Rating-</option>
+                  <option value={null} selected>--Change Rating--</option>
                   <option>0</option>
                   <option>1</option>
                   <option>2</option>
@@ -159,4 +161,4 @@ class CreateTrophy extends Component {
   }
 }
 
-export default (CreateTrophy);
+export default (EditTrophy);
