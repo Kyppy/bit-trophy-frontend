@@ -63,14 +63,8 @@ class App extends Component {
           </div>
           <div className="col-sm-1" />
         </div>
-        <div className="d-flex justify-content-center">
-          <div className="col-sm-8">
-            <EditTrophy rerenderParent={this.rerenderParent} games={games} />
-          </div>
-          <div className="col-sm-4">
-            <DeleteTrophy rerenderParent={this.rerenderParent} games={games} />
-          </div>
-        </div>
+        <EditTrophy rerenderParent={this.rerenderParent} games={games} />
+        <DeleteTrophy rerenderParent={this.rerenderParent} games={games} />
       </div>
     );
   }

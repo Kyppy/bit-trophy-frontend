@@ -13,7 +13,13 @@ class CreateTrophy extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Defaulted Title', platform: 'PS4', genre: 'Adventure', playCheck: false, rating: 1, canPost: true,
+      title: 'Defaulted Title',
+      platform: 'PS4',
+      genre: 'Adventure',
+      playCheck: false,
+      rating: 1,
+      canPost: true,
+      hideCreate: true,
     };
   }
 
@@ -39,13 +45,27 @@ class CreateTrophy extends Component {
         // handle success
         console.log(response.data);
         this.setState({ canPost: true });
+        this.setState({ hideCreate: true });
         this.props.rerenderParent();
       });
     }
   };
 
+  createReady = () => {
+    this.setState({ hideCreate: false });
+  }
+
   render() {
-    return (
+    const { hideCreate } = this.state;
+    return hideCreate ? (
+      <div className="createTrophy">
+        <div className="row">
+          <div className="col-sm-2 mb-3 ml-3">
+            <button className="btn btn-primary" type="submit" onClick={this.createReady}>Create A Trophy?</button>
+          </div>
+        </div>
+      </div>
+    ) : (
       <div className="createTrophy">
         <form>
           <div className="form-row">
