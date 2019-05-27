@@ -80,7 +80,7 @@ class EditTrophy extends Component {
           </div>
           <div className="col-sm-6">
             <select className="custom-select custom-select-sm" name="gameID" onChange={this.handleChange}>
-              <option selected>Select A Trophy ID To Edit</option>
+              <option value={null} selected>Select A Trophy ID To Edit It</option>
               {games.map(item => (
                 <option key={item.id}>{item.id}</option>
               ))}
