@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import TrophyCase from './components/TrophyCase';
 import CreateTrophy from './components/CreateTrophy';
 import EditTrophy from './components/EditTrophy';
+import DeleteTrophy from './components/DeleteTrophy';
 import { fetchGames } from './componentFunctions/trophyCaseFunctions';
 
 let updateFlag = true;
@@ -55,6 +56,7 @@ class App extends Component {
           </tbody>
         </table>
         <EditTrophy rerenderParent={this.rerenderParent} games={games} />
+        <DeleteTrophy rerenderParent={this.rerenderParent} games={games} />
       </div>
     );
   }
