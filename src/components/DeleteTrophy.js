@@ -40,10 +40,10 @@ class DeleteTrophy extends Component {
     return (
       <div className="editTrophy">
         <div className="row">
-          <div className="col-sm-4">
+          <div className="col-sm-2 ml-3">
             <button className="btn btn-danger" type="submit" onClick={this.deleteTrophy}>Delete Trophy?</button>
           </div>
-          <div className="col-sm-6">
+          <div className="col-sm-3">
             <select className="custom-select custom-select-sm" name="gameID" onChange={this.handleChange}>
               <option value={null} selected>Select A Trophy ID To Delete It</option>
               {games.map(item => (
